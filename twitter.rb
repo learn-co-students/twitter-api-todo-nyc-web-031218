@@ -15,31 +15,50 @@ class TwitterApi
   end
 
 
+def get_friends
+thing = client.friends
+#binding.pry
+end
+
   def most_recent_friend
+    #binding.pry
+    get_friends.first
+ # get_friends.first.name
+
     #find the twitter gem method that retrieves a user's friends and grab the most recent friend
   end
 
   def find_user_for(username)
+    client.user(username)
+  # client.user(username).name
     #find the twitter gem method that returns the correct user, given a username
   end
 
   def find_followers_for(username)
+
+    client.followers(username).first(10).map{|user| user.to_h}
+    # client.followers(username).first(10).map{|user| user.name}
     #find the twitter gem method that returns the follows of a given user
+
   end
 
   def homepage_timeline
+    #binding.pry
     #find the twitter gem method that retreives the tweets from a user's timeline.
+    client.home_timeline
+    # client.home_timeline.map{|tweet| tweet.text}
   end
-  
+
 end
 
-#Bonus: 
+#Bonus:
 
-# uncomment out the following and read the bonus instructions.
-# remember to comment out the WebMock line of your spec_helper, as the instructions dictate.
+ # uncomment out the following and read the bonus instructions.
+ # remember to comment out the WebMock line of your spec_helper, as the instructions dictate.
 
-# tweet_client = TwitterApi.new
-# puts tweet_client.most_recent_friend
-# puts tweet_client.find_user_for("USERNAME HERE")
-# puts tweet_client.find_followers_for("USERNAME HERE")
-# puts tweet_client.homepage_timeline
+ # tweet_client = TwitterApi.new
+ # puts tweet_client.most_recent_friend
+ # puts tweet_client.find_user_for("jeremyaarongo")
+ # puts tweet_client.find_followers_for("jeremyaarongo")
+ # Pry.start
+ # puts tweet_client.show_timeline("jeremyaarongo")
